@@ -1,4 +1,28 @@
 require_relative 'ui'
+
+def palavra_forca(chutes, palavra_secreta)
+  mascara = ""
+  palavra_secreta.chars.each do |letra|
+    if chutes.include? letra
+      mascara << letra
+    else
+      mascara << '_'
+    end
+  end
+  mascara
+end
+
+def pede_um_chute_valido(chutes, erros, mascara)
+  cabecalho_chute chutes, erros, mascara
+  loop do
+    chute = pede_um_chute
+    if chutes.include? chute
+      avisa_chutou_uma_letra_repetida chute
+    else
+      return chute
+    end
+  end
+end
 def joga(nome)
   palavra_secreta= sorteia_palavra_secreta
 
@@ -7,11 +31,8 @@ def joga(nome)
   pontos_ate_agora = 0
 
   while erros < 5
-    chute = pede_um_chute(chutes, erros)
-    if chutes.include? chute
-      avisa_chutou_uma_letra chute
-      next
-    end
+    mascara = palavra_forca(chutes, palavra_secreta)
+    chute = pede_um_chute_valido(chutes, erros, mascara)
     chutes << chute
 
     chutou_uma_letra = chute.size == 1

@@ -4,17 +4,21 @@ def da_boas_vindas
   nome = gets.strip
 end
 
-def pede_um_chute(chutes, erros)
+def cabecalho_chute(chutes, erros, mascara)
   puts "\n\n\n\n"
+  puts "A palavra secreta é:  #{mascara}"
   puts "A quantidade de erros: #{erros}"
   puts "Os chutes são #{chutes}"
+end
+
+def pede_um_chute
   puts "Digite o seu chute."
   chute = gets.strip
   puts "Será que acertou? Você chutou #{chute}"
   chute
 end
 
-def avisa_chutou_uma_letra(chute)
+def avisa_chutou_uma_letra_repetida(chute)
   puts "Você chutou a letra '#{chute}' novamente."
 end
 
