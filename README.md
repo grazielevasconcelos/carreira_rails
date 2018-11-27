@@ -9,29 +9,36 @@ Conferimos as versões e o passo de instalação em:
 * [RVM:](http://rvm.io/)
 * [Ruby:](https://www.ruby-lang.org/en/downloads/)
 
-
-Como capturar o digitamos no terminal:
-```ruby
-gets
-```
-
 Como mostrar no terminal uma mensagem
-
 ```ruby
-puts 'Olá mundo!'
+puts 'Qual é o seu nome?'
+```
+Para interpolação é necessário o uso de aspas "" e não apóstrofe '' para que seja viável a chamada do .to_s da variável
+```ruby
+nome = 'Ana' 
+puts "Começaremos o jogo para você, #{nome}"
+```
+Como capturar o que digitamos no terminal:
+```ruby
+nome = gets
+```
+.strip Retirando os espaços, quebra de linha e expressões de formatação como: \r\n
+```ruby
+nome = gets.strip
 ```
 
-```ruby
-mensagem = 'mundo' 
-puts 'Olá #{mensagem}'
-```
 Criando um método
-```
-def saudando_cliente
-  puts 'Olá! Seja bem-vindo!'
+```ruby
+def da_boas_vindas
+  puts "Qual é o seu nome?"
+  nome = gets.strip
+  puts "\n\n\n\n\n\n"
+  puts "Começaremos o jogo para você, #{nome}"
+  nome
 end
 ```
+
 Chamando um método
-```
-saudando_cliente
+```ruby
+da_boas_vindas
 ```
