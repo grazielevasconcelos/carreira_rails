@@ -1,5 +1,18 @@
+def avisa_campeao_atual
+  conteudo = File.read("rank.txt")
+  rank = conteudo.split "\n"
+  nome = rank[0].to_s
+  pontos = rank[1].to_i
+  puts "O campeão atual é '#{nome}' com #{pontos} pontos."
+
+end
+def avisa_pontos_totais pontos_totais
+  puts "Você possui #{pontos_totais} pontos."
+end
 def da_boas_vindas
-  puts 'Bem-vindo ao jogo da forca'
+  puts "/********************************/"
+  puts "/**********JOGO DA FORCA*********/"
+  puts "/********************************/"
   puts 'Meu querido(a) competidor qual é o seu nome? '
   nome = gets.strip
 end
@@ -13,7 +26,7 @@ end
 
 def pede_um_chute
   puts "Digite o seu chute."
-  chute = gets.strip
+  chute = gets.strip.downcase
   puts "Será que acertou? Você chutou #{chute}"
   chute
 end
@@ -36,4 +49,13 @@ end
 
 def avisar_jogar_novamente
   puts 'Você deseja jogar ? (S/N)'
+end
+
+def avisa_escolhendo_palavra
+  puts 'Escolhendo palavra secreta...'
+end
+
+def avisa_palavra_escolhida(palavra_secreta)
+  puts "Palavra secreta com #{palavra_secreta.size} letras... boa sorte!"
+  palavra_secreta
 end
