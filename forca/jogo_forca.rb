@@ -34,9 +34,6 @@ def joga(nome)
     mascara = palavra_forca(chutes, palavra_secreta)
     chute = pede_um_chute_valido(chutes, erros, mascara)
     chutes << chute
-    puts('looping')
-    puts chute
-    puts chutes
     chutou_uma_letra = chute.size == 1
     chutou_uma_palavra = chute.size > 1
 
@@ -47,9 +44,7 @@ def joga(nome)
     end
 
     if chutou_uma_letra
-      puts('chutou_uma_letra')
       if palavra_secreta.include? chute
-        puts('chutes.include? chute')
         quantidade_letra = palavra_secreta.count(chute)
         avisa_acerto_uma_letra quantidade_letra
         pontos_ate_agora += 100
@@ -58,7 +53,6 @@ def joga(nome)
         puts('chutes.include? chute2')
       end
     end
-    puts('FORA')
     avisa_errou
     pontos_ate_agora -= 30
     erros += 1
