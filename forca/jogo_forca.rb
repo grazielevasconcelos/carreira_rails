@@ -50,7 +50,6 @@ def joga(nome)
         pontos_ate_agora += 100
         avisa_pontos_ganhos(nome, pontos_ate_agora)
         next
-        puts('chutes.include? chute2')
       end
     end
     avisa_errou
