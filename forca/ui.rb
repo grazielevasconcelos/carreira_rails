@@ -1,8 +1,53 @@
-def avisa_campeao_atual
-  conteudo = File.read("rank.txt")
-  rank = conteudo.split "\n"
-  nome = rank[0].to_s
-  pontos = rank[1].to_i
+def avisa_acertou_palavra
+  puts "\nParabéns, você ganhou!"
+  puts
+
+  puts "       ___________      "
+  puts "      '._==_==_=_.'     "
+  puts "      .-\\:      /-.    "
+  puts "     | (|:.     |) |    "
+  puts "      '-|:.     |-'     "
+  puts "        \\::.    /      "
+  puts "         '::. .'        "
+  puts "           ) (          "
+  puts "         _.' '._        "
+  puts "        '-------'       "
+  puts
+end
+
+def desenha_forca(erros)
+  cabeca = "   "
+  corpo = " "
+  pernas = "   "
+  bracos = "   "
+  if erros >= 1
+    cabeca = "(_)"
+  end
+  if erros >= 2
+    bracos = " | "
+    corpo = "|"
+  end
+  if erros >= 3
+    bracos = "\\|/"
+  end
+  if erros >= 4
+    pernas = "/ \\"
+  end
+
+  puts "  _______       "
+  puts " |/      |      "
+  puts " |      #{cabeca}  "
+  puts " |      #{bracos}  "
+  puts " |       #{corpo}  "
+  puts " |      #{pernas}  "
+  puts " |              "
+  puts "_|___           "
+  puts
+
+end
+def avisa_campeao_atual(dados)
+  nome = dados[0].to_s
+  pontos = dados[1].to_i
   puts "O campeão atual é '#{nome}' com #{pontos} pontos."
 
 end
@@ -19,6 +64,7 @@ end
 
 def cabecalho_chute(chutes, erros, mascara)
   puts "\n\n\n\n"
+  desenha_forca erros
   puts "A palavra secreta é:  #{mascara}"
   puts "A quantidade de erros: #{erros}"
   puts "Os chutes são #{chutes}"

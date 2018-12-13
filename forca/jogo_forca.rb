@@ -14,8 +14,8 @@ def palavra_forca(chutes, palavra_secreta)
 end
 
 def pede_um_chute_valido(chutes, erros, mascara)
-  cabecalho_chute chutes, erros, mascara
   loop do
+    cabecalho_chute chutes, erros, mascara
     chute = pede_um_chute
     if chutes.include? chute
       avisa_chutou_uma_letra_repetida chute
@@ -35,22 +35,31 @@ def joga(nome)
     mascara = palavra_forca(chutes, palavra_secreta)
     chute = pede_um_chute_valido(chutes, erros, mascara)
     chutes << chute
-
+    puts('looping')
+    puts chute
+    puts chutes
     chutou_uma_letra = chute.size == 1
     chutou_uma_palavra = chute.size > 1
 
     if chutou_uma_palavra
       pontos_ate_agora += 100 if chute == palavra_secreta
+      avisa_acertou_palavra
       break
     end
 
     if chutou_uma_letra
-      quantidade_letra = palavra_secreta.count(chute)
-      avisa_acerto_uma_letra quantidade_letra
-      pontos_ate_agora += 100
-      avisa_pontos_ganhos(nome, pontos_ate_agora)
-      next
+      puts('chutou_uma_letra')
+      if palavra_secreta.include? chute
+        puts('chutes.include? chute')
+        quantidade_letra = palavra_secreta.count(chute)
+        avisa_acerto_uma_letra quantidade_letra
+        pontos_ate_agora += 100
+        avisa_pontos_ganhos(nome, pontos_ate_agora)
+        next
+        puts('chutes.include? chute2')
+      end
     end
+    puts('FORA')
     avisa_errou
     pontos_ate_agora -= 30
     erros += 1
@@ -70,14 +79,13 @@ end
 
 def sorteia_palavra_secreta_otimizada
   avisa_escolhendo_palavra
-  arquivo = File.new("dicionario.txt")
-  quantidade_de_palavras = arquivo.gets.to_i
-  numero_escolhido = rand(quantidade_de_palavras)
-  puts numero_escolhido
-  for linha in 1..(numero_escolhido-1)
-    arquivo.gets
+  arquivo = File.new("dicionario", "r")
+  total_de_palavras = arquivo.gets.to_i
+  aleatoria = rand(total_de_palavras)
+  for i in 1..aleatoria -1
+  arquivo.gets
   end
-  palavra_secreta = arquivo.gets.to_s.split("\n").downcase
+  palavra_secreta = arquivo.gets.strip.downcase
   arquivo.close
   avisa_palavra_escolhida(palavra_secreta)
 end
@@ -91,7 +99,7 @@ end
 def jogo_da_forca
   nome = da_boas_vindas
   pontos_totais = 0
-  avisa_campeao_atual
+  avisa_campeao_atual le_rank
 
   loop do
     pontos_totais += joga nome
